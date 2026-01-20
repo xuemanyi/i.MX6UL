@@ -1,8 +1,8 @@
 # Program name
-TARGET := chardev_app
+TARGET := chardev-app
 
 # Source files
-SRCS := chardev_app.c
+SRCS := chardev-app.c
 
 # Object files
 OBJS := $(SRCS:.c=.o)
