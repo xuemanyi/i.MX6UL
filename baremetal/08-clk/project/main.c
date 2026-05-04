@@ -1,8 +1,6 @@
 /*
- * i.MX6UL bare-metal key input example.
+ * i.MX6UL main frequency clock configuration example.
  *
- * This example uses KEY0 to toggle the buzzer state and blinks LED0
- * periodically in the main loop.
  */
 
 #include "bsp_clk.h"
