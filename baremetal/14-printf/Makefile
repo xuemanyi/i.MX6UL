@@ -45,7 +45,9 @@ OBJS		:= $(SOBJS) $(COBJS)
 
 VPATH		:= $(SRCDIRS)
 
-CFLAGS		:= -Wall -nostdlib -fno-builtin -c -O2 $(INCLUDE)
+# CFLAGS		:= -Wall -nostdlib -fno-builtin -c -O2 $(INCLUDE)
+# Fix: Error: thumb conditional instruction should be in IT block -- `addcs lr,lr,#65536'
+CFLAGS      := -Wall -nostdlib -fno-builtin -c -O2 -marm -mcpu=cortex-a7 $(INCLUDE)
 LDFLAGS		:= -nostdlib -T imx6ul.lds
 
 .PHONY: all clean
