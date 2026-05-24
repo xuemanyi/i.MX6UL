@@ -1,70 +1,67 @@
-CROSS_COMPILE	:= arm-linux-gnueabihf-
-TARGET		?= uart
+TARGET ?= uart
 
-CC		:= $(CROSS_COMPILE)gcc
-LD		:= $(CROSS_COMPILE)gcc
-OBJCOPY		:= $(CROSS_COMPILE)objcopy
-OBJDUMP		:= $(CROSS_COMPILE)objdump
+TOOLCHAIN_DIR := /usr/local/arm/gcc-linaro-4.9.4-2017.01-x86_64_arm-linux-gnueabihf
+CROSS_COMPILE := $(TOOLCHAIN_DIR)/bin/arm-linux-gnueabihf-
 
-# 不要手写 libgcc 路径
-# LIBPATH 删除
+CC := $(CROSS_COMPILE)gcc
+LD := $(CROSS_COMPILE)ld
+OBJCOPY := $(CROSS_COMPILE)objcopy
+OBJDUMP := $(CROSS_COMPILE)objdump
 
-INCDIRS		:= imx6ul \
-		   bsp/clk \
-		   bsp/led \
-		   bsp/delay \
-		   bsp/beep \
-		   bsp/gpio \
-		   bsp/key \
-		   bsp/exit \
-		   bsp/int \
-		   bsp/epit-timer \
-		   bsp/key-filter \
-		   bsp/uart
+LIBPATH := -L$(TOOLCHAIN_DIR)/lib/gcc/arm-linux-gnueabihf/4.9.4 -lgcc
 
-SRCDIRS		:= project \
-		   bsp/clk \
-		   bsp/led \
-		   bsp/delay \
-		   bsp/beep \
-		   bsp/gpio \
-		   bsp/key \
-		   bsp/exit \
-		   bsp/int \
-		   bsp/epit-timer \
-		   bsp/key-filter \
-		   bsp/uart
+INCDIRS := imx6ul \
+	bsp/clk \
+	bsp/led \
+	bsp/delay \
+	bsp/beep \
+	bsp/gpio \
+	bsp/key \
+	bsp/exit \
+	bsp/int \
+	bsp/epittimer \
+	bsp/keyfilter \
+	bsp/uart
 
-INCLUDE		:= $(patsubst %, -I %, $(INCDIRS))
+SRCDIRS := project \
+	bsp/clk \
+	bsp/led \
+	bsp/delay \
+	bsp/beep \
+	bsp/gpio \
+	bsp/key \
+	bsp/exit \
+	bsp/int \
+	bsp/epittimer \
+	bsp/keyfilter \
+	bsp/uart
 
-SFILES		:= $(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*.S))
-CFILES		:= $(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*.c))
+INCLUDE := $(patsubst %, -I%, $(INCDIRS))
 
-SOBJS		:= $(patsubst %.S, obj/%.o, $(notdir $(SFILES)))
-COBJS		:= $(patsubst %.c, obj/%.o, $(notdir $(CFILES)))
-OBJS		:= $(SOBJS) $(COBJS)
+SFILES := $(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*.S))
+CFILES := $(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*.c))
 
-VPATH		:= $(SRCDIRS)
+SFILENDIR := $(notdir $(SFILES))
+CFILENDIR := $(notdir $(CFILES))
 
-CFLAGS		:= -Wall -nostdlib -fno-builtin -c -O2 $(INCLUDE)
-LDFLAGS		:= -nostdlib -T imx6ul.lds
+SOBJS := $(patsubst %, obj/%, $(SFILENDIR:.S=.o))
+COBJS := $(patsubst %, obj/%, $(CFILENDIR:.c=.o))
+OBJS := $(SOBJS) $(COBJS)
 
-.PHONY: all clean
+VPATH := $(SRCDIRS)
 
-all: $(TARGET).bin
+.PHONY: clean
 
-$(TARGET).bin: $(OBJS)
-	$(LD) $(LDFLAGS) -o $(TARGET).elf $^ -lgcc
+$(TARGET).bin : $(OBJS)
+	$(LD) -Timx6ul.lds -o $(TARGET).elf $^ $(LIBPATH)
 	$(OBJCOPY) -O binary -S $(TARGET).elf $@
 	$(OBJDUMP) -D -m arm $(TARGET).elf > $(TARGET).dis
 
-obj/%.o: %.S
-	@mkdir -p obj
-	$(CC) $(CFLAGS) -o $@ $<
+$(SOBJS) : obj/%.o : %.S
+	$(CC) -Wall -nostdlib -fno-builtin -c -O2 $(INCLUDE) -o $@ $<
 
-obj/%.o: %.c
-	@mkdir -p obj
-	$(CC) $(CFLAGS) -o $@ $<
+$(COBJS) : obj/%.o : %.c
+	$(CC) -Wall -nostdlib -fno-builtin -c -O2 $(INCLUDE) -o $@ $<
 
 clean:
-	rm -rf obj $(TARGET).elf $(TARGET).dis $(TARGET).bin
+	rm -rf $(TARGET).elf $(TARGET).dis $(TARGET).bin $(COBJS) $(SOBJS)
