@@ -1,71 +1,72 @@
-CROSS_COMPILE	:= arm-linux-gnueabihf-
-TARGET		?= uart
+TARGET ?= uart
 
-CC		:= $(CROSS_COMPILE)gcc
-LD		:= $(CROSS_COMPILE)gcc
-OBJCOPY		:= $(CROSS_COMPILE)objcopy
-OBJDUMP		:= $(CROSS_COMPILE)objdump
+TOOLCHAIN_DIR := /usr/local/arm/gcc-linaro-4.9.4-2017.01-x86_64_arm-linux-gnueabihf
+CROSS_COMPILE := $(TOOLCHAIN_DIR)/bin/arm-linux-gnueabihf-
 
-INCDIRS		:= imx6ul \
-		   stdio/include \
-		   bsp/clk \
-		   bsp/led \
-		   bsp/delay \
-		   bsp/beep \
-		   bsp/gpio \
-		   bsp/key \
-		   bsp/exit \
-		   bsp/int \
-		   bsp/epit-timer \
-		   bsp/key-filter \
-		   bsp/uart
+CC := $(CROSS_COMPILE)gcc
+LD := $(CROSS_COMPILE)ld
+OBJCOPY := $(CROSS_COMPILE)objcopy
+OBJDUMP := $(CROSS_COMPILE)objdump
 
-SRCDIRS		:= project \
-		   stdio/lib \
-		   bsp/clk \
-		   bsp/led \
-		   bsp/delay \
-		   bsp/beep \
-		   bsp/gpio \
-		   bsp/key \
-		   bsp/exit \
-		   bsp/int \
-		   bsp/epit-timer \
-		   bsp/key-filter \
-		   bsp/uart
+CFLAGS := -Wall -nostdlib -fno-builtin -c -O2 -marm -march=armv7-a
+LIBPATH := -L$(TOOLCHAIN_DIR)/lib/gcc/arm-linux-gnueabihf/4.9.4 -lgcc
 
-INCLUDE		:= $(patsubst %, -I %, $(INCDIRS))
+INCDIRS	:= imx6ul \
+	stdio/include \
+	bsp/clk \
+	bsp/led \
+	bsp/delay \
+	bsp/beep \
+	bsp/gpio \
+	bsp/key \
+	bsp/exit \
+	bsp/int \
+	bsp/epit-timer \
+	bsp/key-filter \
+	bsp/uart
 
-SFILES		:= $(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*.S))
-CFILES		:= $(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*.c))
+SRCDIRS	:= project \
+	stdio/lib \
+	bsp/clk \
+	bsp/led \
+	bsp/delay \
+	bsp/beep \
+	bsp/gpio \
+	bsp/key \
+	bsp/exit \
+	bsp/int \
+	bsp/epit-timer \
+	bsp/key-filter \
+	bsp/uart
 
-SOBJS		:= $(patsubst %.S, obj/%.o, $(notdir $(SFILES)))
-COBJS		:= $(patsubst %.c, obj/%.o, $(notdir $(CFILES)))
-OBJS		:= $(SOBJS) $(COBJS)
+INCLUDE := $(patsubst %, -I%, $(INCDIRS))
 
-VPATH		:= $(SRCDIRS)
+SFILES := $(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*.S))
+CFILES := $(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*.c))
 
-# CFLAGS		:= -Wall -nostdlib -fno-builtin -c -O2 $(INCLUDE)
-# Fix: Error: thumb conditional instruction should be in IT block -- `addcs lr,lr,#65536'
-CFLAGS      := -Wall -nostdlib -fno-builtin -c -O2 -marm -mcpu=cortex-a7 $(INCLUDE)
-LDFLAGS		:= -nostdlib -T imx6ul.lds
+SFILENDIR := $(notdir $(SFILES))
+CFILENDIR := $(notdir $(CFILES))
 
-.PHONY: all clean
+SOBJS := $(patsubst %, obj/%, $(SFILENDIR:.S=.o))
+COBJS := $(patsubst %, obj/%, $(CFILENDIR:.c=.o))
+OBJS := $(SOBJS) $(COBJS)
 
-all: $(TARGET).bin
+VPATH := $(SRCDIRS)
 
-$(TARGET).bin: $(OBJS)
-	$(LD) $(LDFLAGS) -o $(TARGET).elf $^ -lgcc
+.PHONY: clean
+
+$(TARGET).bin : $(OBJS)
+	$(LD) -Timx6ul.lds -o $(TARGET).elf $^ $(LIBPATH)
 	$(OBJCOPY) -O binary -S $(TARGET).elf $@
 	$(OBJDUMP) -D -m arm $(TARGET).elf > $(TARGET).dis
 
-obj/%.o: %.S
+$(SOBJS) : obj/%.o : %.S
 	@mkdir -p obj
-	$(CC) $(CFLAGS) -o $@ $<
+	$(CC) $(CFLAGS) $(INCLUDE) -o $@ $<
 
-obj/%.o: %.c
+$(COBJS) : obj/%.o : %.c
 	@mkdir -p obj
-	$(CC) $(CFLAGS) -o $@ $<
+	$(CC) $(CFLAGS) $(INCLUDE) -o $@ $<
 
 clean:
-	rm -rf obj $(TARGET).elf $(TARGET).dis $(TARGET).bin
+	rm -rf $(TARGET).elf $(TARGET).dis $(TARGET).bin $(COBJS) $(SOBJS)
