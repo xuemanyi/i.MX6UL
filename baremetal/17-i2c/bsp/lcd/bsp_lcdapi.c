@@ -1,8 +1,3 @@
-/***************************************************************
-Copyright © zuozhongkai Co., Ltd. 1998-2019. All rights reserved.
-文件名  : bsp_lcdapi.c
-描述    : LCD API函数文件（优化版，功能保持不变）。
-***************************************************************/
 #include "bsp_lcdapi.h"
 #include "font.h"
 

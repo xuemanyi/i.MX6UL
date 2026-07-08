@@ -1,10 +1,5 @@
 #ifndef _BSP_LCD_H
 #define _BSP_LCD_H
-/***************************************************************
-Copyright © zuozhongkai Co., Ltd. 1998-2019. All rights reserved.
-文件名  : bsp_lcd.h
-描述    : LCD驱动文件头文件（优化版，功能保持不变）。
-***************************************************************/
 #include "imx6ul.h"
 
 /* 颜色 */

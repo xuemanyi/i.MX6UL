@@ -1,15 +1,5 @@
 #ifndef _BSP_AP3216C_H
 #define _BSP_AP3216C_H
-/***************************************************************
-Copyright © zuozhongkai Co., Ltd. 1998-2019. All rights reserved.
-文件名	: 	 bsp_ap3216c.h
-作者	   : 左忠凯
-版本	   : V1.0
-描述	   : AP3216C驱动头文件。
-其他	   : 无
-论坛 	   : www.wtmembed.com
-日志	   : 初版V1.0 2019/3/26 左忠凯创建
-***************************************************************/
 #include "imx6ul.h"
 
 #define AP3216C_ADDR    	0X1E	/* AP3216C器件地址 */

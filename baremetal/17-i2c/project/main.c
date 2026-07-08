@@ -1,15 +1,3 @@
-/**************************************************************
-Copyright © zuozhongkai Co., Ltd. 1998-2019. All rights reserved.
-文件名	: 	 mian.c
-作者	   : 左忠凯
-版本	   : V1.0
-描述	   : I.MX6U开发板裸机实验18 IIC实验
-其他	   : IIC是最常用的接口，ZERO开发板上有多个IIC外设，本实验就
-		 来学习如何驱动I.MX6U的IIC接口，并且通过IIC接口读取板载
-		 AP3216C的数据值。
-论坛 	   : www.wtmembed.com
-日志	   : 初版V1.0 2019/1/15 左忠凯创建
-**************************************************************/
 #include "bsp_clk.h"
 #include "bsp_delay.h"
 #include "bsp_led.h"

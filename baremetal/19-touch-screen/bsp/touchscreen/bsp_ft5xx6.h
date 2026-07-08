@@ -1,16 +1,5 @@
 #ifndef _FT5XX6_H
 #define _FT5XX6_H
-/***************************************************************
-Copyright © zuozhongkai Co., Ltd. 1998-2019. All rights reserved.
-文件名	: 	 bsp_ft5xx6.h
-作者	   : 左忠凯
-版本	   : V1.0
-描述	   : 触摸屏驱动头文件,触摸芯片为FT5xx6,
-		 包括FT5426和FT5406。
-其他	   : 无
-论坛 	   : www.wtmembed.com
-日志	   : 初版V1.0 2019/1/21 左忠凯创建
-***************************************************************/
 #include "imx6ul.h"
 #include "bsp_gpio.h"
 

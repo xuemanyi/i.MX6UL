@@ -1,15 +1,3 @@
-/**************************************************************
-Copyright © zuozhongkai Co., Ltd. 1998-2019. All rights reserved.
-文件名	: 	 mian.c
-作者	   : 左忠凯
-版本	   : V1.0
-描述	   : I.MX6U开发板裸机实验19 SPI实验
-其他	   : SPI也是最常用的接口，ZERO开发板上有一个6轴传感器ICM20608，
-		 这个六轴传感器就是SPI接口的，本实验就来学习如何驱动I.MX6U
-		 的SPI接口，并且通过SPI接口读取ICM20608的数据值。
-论坛 	   : www.wtmembed.com
-日志	   : 初版V1.0 2019/1/17 左忠凯创建
-**************************************************************/
 #include "bsp_clk.h"
 #include "bsp_delay.h"
 #include "bsp_led.h"

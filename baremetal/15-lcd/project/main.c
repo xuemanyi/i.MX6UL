@@ -1,8 +1,3 @@
-/**************************************************************
-Copyright © zuozhongkai Co., Ltd. 1998-2019. All rights reserved.
-文件名  : main.c
-描述    : I.MX6U开发板裸机实验16 LCD液晶屏实验（优化版，功能保持不变）。
-**************************************************************/
 #include "bsp_clk.h"
 #include "bsp_delay.h"
 #include "bsp_led.h"

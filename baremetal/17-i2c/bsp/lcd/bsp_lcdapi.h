@@ -1,10 +1,5 @@
 #ifndef BSP_LCDAPI_H
 #define BSP_LCDAPI_H
-/***************************************************************
-Copyright © zuozhongkai Co., Ltd. 1998-2019. All rights reserved.
-文件名  : bsp_lcdapi.h
-描述    : LCD显示API函数头文件（优化版，功能保持不变）。
-***************************************************************/
 #include "imx6ul.h"
 #include "bsp_lcd.h"
 

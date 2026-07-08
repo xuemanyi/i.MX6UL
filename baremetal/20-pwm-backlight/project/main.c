@@ -1,16 +1,3 @@
-/**************************************************************
-Copyright © zuozhongkai Co., Ltd. 1998-2019. All rights reserved.
-文件名	: 	 mian.c
-作者	   : 左忠凯
-版本	   : V1.0
-描述	   : I.MX6U开发板裸机实验21 背光PWM实验
-其他	   : 我们使用手机的时候背光都是可以调节的，同样的ZERO-I.MX6U
-		 开发板的LCD背光也是可以调节，LCD背光就相当于一个LED灯。
-		 LED灯的亮灭可以通过PWM来控制，本实验我们就来学习一下如何
-		 通过PWM来控制LCD的背光。
-论坛 	   : www.wtmembed.com
-日志	   : 初版V1.0 2019/1/21 左忠凯创建
-**************************************************************/
 #include "bsp_clk.h"
 #include "bsp_delay.h"
 #include "bsp_led.h"

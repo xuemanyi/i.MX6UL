@@ -1,13 +1,3 @@
-/***************************************************************
-Copyright © zuozhongkai Co., Ltd. 1998-2019. All rights reserved.
-文件名	: 	 bsp_i2c.c
-作者	   : 左忠凯
-版本	   : V1.0
-描述	   : IIC驱动文件。
-其他	   : 无
-论坛 	   : www.wtmembed.com
-日志	   : 初版V1.0 2019/1/15 左忠凯创建
-***************************************************************/
 #include "bsp_i2c.h"
 #include "bsp_delay.h"
 #include "stdio.h"
