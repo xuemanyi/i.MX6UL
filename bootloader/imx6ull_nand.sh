@@ -12,7 +12,10 @@ ${CROSS_COMPILE}gcc -v
 
 make distclean
 
-make mx6ull_14x14_ddr256_nand_defconfig
+# make mx6ull_14x14_ddr256_nand_defconfig
+make mytest_defconfig
 # make mx6ull_14x14_ddr512_emmc_defconfig
+# make menuconfig
 
 make V=1 -j12
+# make V=1 -j12 2>&1 | tee build.log
