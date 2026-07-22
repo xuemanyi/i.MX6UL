@@ -580,6 +580,12 @@ config CMD_TPM_TEST
 	  tests pass correctly on Infineon TPMs but may need to be adjusted
 	  for other devices.
 
+config CMD_MYTEST
+	bool "mytest command"
+	default n
+	help
+	  Enable the custom mytest command.
+
 endmenu
 
 endmenu

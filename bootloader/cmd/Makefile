@@ -164,3 +164,6 @@ obj-$(CONFIG_CMD_BLOB) += blob.o
 # core command
 obj-y += nvedit.o
 obj-y += disk.o
+
+# test
+obj-$(CONFIG_CMD_MYTEST) += mytest.o
