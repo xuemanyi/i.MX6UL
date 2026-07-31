@@ -1,0 +1,18 @@
+{
+  "C_Cpp.intelliSenseEngine": "disabled",
+
+  "editor.inlayHints.enabled": "on",
+  "editor.parameterHints.enabled": true,
+  "editor.hover.enabled": "on",
+
+  "clangd.arguments": [
+    "--background-index",
+    "--completion-style=detailed",
+    "--header-insertion=never",
+    "--log=info"
+  ],
+
+  "files.associations": {
+    "*.h": "c"
+  }
+}
