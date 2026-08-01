@@ -535,6 +535,18 @@ config VEXPRESS_SYSCFG
 	  bus. System Configuration interface is one of the possible means
 	  of generating transactions on this bus.
 
+config HELLO_DRIVER
+    tristate "Hello World driver"
+    help
+      This option enables a simple Hello World driver used to
+      demonstrate how to integrate a driver into the Linux kernel
+      source tree.
+
+      Select M to build the driver as a loadable module named
+      hello_driver.ko.
+
+      Select Y to build the driver directly into the kernel.
+
 source "drivers/misc/c2port/Kconfig"
 source "drivers/misc/eeprom/Kconfig"
 source "drivers/misc/cb710/Kconfig"
