@@ -11,10 +11,14 @@ TOOLCHAIN_DIR := /usr/local/arm/gcc-linaro-4.9.4-2017.01-x86_64_arm-linux-gnueab
 ARCH          := arm
 CROSS_COMPILE := $(TOOLCHAIN_DIR)/bin/arm-linux-gnueabihf-
 KDIR          := $(abspath $(CURDIR)/../../kernel)
+BEAR          ?= bear
+COMPDB        := $(CURDIR)/compile_commands.json
 
-.PHONY: all clean modules_install
+.PHONY: all clean modules_install compdb
 
 all:
+	$(MAKE) clean
+	$(BEAR) --output $(COMPDB) -- \
 	$(MAKE) -C $(KDIR) \
 		ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) \
 		M=$(CURDIR) modules
