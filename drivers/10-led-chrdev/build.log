@@ -1,0 +1,168 @@
+make -C /home/gs/code/i.MX6UL/drivers/10-led-chrdev/../../kernel \
+	ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- \
+	KCFLAGS=-march=armv7-a \
+	M=/home/gs/code/i.MX6UL/drivers/10-led-chrdev modules
+make[1]: Entering directory '/home/gs/code/i.MX6UL/kernel'
+test -e include/generated/autoconf.h -a -e include/config/auto.conf || (		\
+echo >&2;							\
+echo >&2 "  ERROR: Kernel configuration is invalid.";		\
+echo >&2 "         include/generated/autoconf.h or include/config/auto.conf are missing.";\
+echo >&2 "         Run 'make oldconfig && make prepare' on kernel src to fix it.";	\
+echo >&2 ;							\
+/bin/false)
+mkdir -p /home/gs/code/i.MX6UL/drivers/10-led-chrdev/.tmp_versions ; rm -f /home/gs/code/i.MX6UL/drivers/10-led-chrdev/.tmp_versions/*
+make -f ./scripts/Makefile.build obj=/home/gs/code/i.MX6UL/drivers/10-led-chrdev
+  arm-linux-gnueabihf-gcc -Wp,-MD,/home/gs/code/i.MX6UL/drivers/10-led-chrdev/.led_register_chrdev.o.d -nostdinc -isystem /usr/lib/gcc-cross/arm-linux-gnueabihf/13/include -I./arch/arm/include -Iarch/arm/include/generated/uapi -Iarch/arm/include/generated  -Iinclude -I./arch/arm/include/uapi -Iarch/arm/include/generated/uapi -I./include/uapi -Iinclude/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-dwarf2-cfi-asm -fno-ipa-sra -mabi=aapcs-linux -mno-thumb-interwork -mfpu=vfp -funwind-tables -marm -D__LINUX_ARM_ARCH__=7 -march=armv5t -Wa,-march=armv7-a -msoft-float -Uarm -fno-delete-null-pointer-checks -O2 -Wframe-larger-than=1024 -fno-stack-protector -Wno-unused-but-set-variable -fomit-frame-pointer -fno-var-tracking-assignments -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -march=armv7-a  -DMODULE  -D"KBUILD_STR(s)=#s" -D"KBUILD_BASENAME=KBUILD_STR(led_register_chrdev)"  -D"KBUILD_MODNAME=KBUILD_STR(led_register_chrdev)" -c -o /home/gs/code/i.MX6UL/drivers/10-led-chrdev/.tmp_led_register_chrdev.o /home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_register_chrdev.c
+In file included from include/linux/kernel.h:11,
+                 from include/linux/list.h:8,
+                 from include/linux/wait.h:6,
+                 from include/linux/fs.h:6,
+                 from /home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_register_chrdev.c:3:
+include/linux/log2.h:22:1: warning: ignoring attribute ‘noreturn’ because it conflicts with attribute ‘const’ [-Wattributes]
+   22 | int ____ilog2_NaN(void);
+      | ^~~
+In file included from include/linux/printk.h:5,
+                 from include/linux/kernel.h:13:
+include/linux/init.h:350:13: warning: ‘init_module’ specifies less restrictive attribute than its target ‘led_register_chrdev_init’: ‘cold’ [-Wmissing-attributes]
+  350 |         int init_module(void) __attribute__((alias(#initfn)));
+      |             ^~~~~~~~~~~
+/home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_register_chrdev.c:45:1: note: in expansion of macro ‘module_init’
+   45 | module_init(led_register_chrdev_init);
+      | ^~~~~~~~~~~
+/home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_register_chrdev.c:12:19: note: ‘init_module’ target declared here
+   12 | static int __init led_register_chrdev_init(void)
+      |                   ^~~~~~~~~~~~~~~~~~~~~~~~
+include/linux/init.h:356:14: warning: ‘cleanup_module’ specifies less restrictive attribute than its target ‘led_register_chrdev_exit’: ‘cold’ [-Wmissing-attributes]
+  356 |         void cleanup_module(void) __attribute__((alias(#exitfn)));
+      |              ^~~~~~~~~~~~~~
+/home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_register_chrdev.c:46:1: note: in expansion of macro ‘module_exit’
+   46 | module_exit(led_register_chrdev_exit);
+      | ^~~~~~~~~~~
+/home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_register_chrdev.c:37:20: note: ‘cleanup_module’ target declared here
+   37 | static void __exit led_register_chrdev_exit(void)
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~~
+  arm-linux-gnueabihf-gcc -Wp,-MD,/home/gs/code/i.MX6UL/drivers/10-led-chrdev/.led_cdev_static.o.d -nostdinc -isystem /usr/lib/gcc-cross/arm-linux-gnueabihf/13/include -I./arch/arm/include -Iarch/arm/include/generated/uapi -Iarch/arm/include/generated  -Iinclude -I./arch/arm/include/uapi -Iarch/arm/include/generated/uapi -I./include/uapi -Iinclude/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-dwarf2-cfi-asm -fno-ipa-sra -mabi=aapcs-linux -mno-thumb-interwork -mfpu=vfp -funwind-tables -marm -D__LINUX_ARM_ARCH__=7 -march=armv5t -Wa,-march=armv7-a -msoft-float -Uarm -fno-delete-null-pointer-checks -O2 -Wframe-larger-than=1024 -fno-stack-protector -Wno-unused-but-set-variable -fomit-frame-pointer -fno-var-tracking-assignments -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -march=armv7-a  -DMODULE  -D"KBUILD_STR(s)=#s" -D"KBUILD_BASENAME=KBUILD_STR(led_cdev_static)"  -D"KBUILD_MODNAME=KBUILD_STR(led_cdev_static)" -c -o /home/gs/code/i.MX6UL/drivers/10-led-chrdev/.tmp_led_cdev_static.o /home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_cdev_static.c
+In file included from include/linux/kernel.h:11,
+                 from include/linux/list.h:8,
+                 from include/linux/kobject.h:20,
+                 from include/linux/cdev.h:4,
+                 from /home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_cdev_static.c:3:
+include/linux/log2.h:22:1: warning: ignoring attribute ‘noreturn’ because it conflicts with attribute ‘const’ [-Wattributes]
+   22 | int ____ilog2_NaN(void);
+      | ^~~
+In file included from include/linux/printk.h:5,
+                 from include/linux/kernel.h:13:
+include/linux/init.h:350:13: warning: ‘init_module’ specifies less restrictive attribute than its target ‘led_cdev_static_init’: ‘cold’ [-Wmissing-attributes]
+  350 |         int init_module(void) __attribute__((alias(#initfn)));
+      |             ^~~~~~~~~~~
+/home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_cdev_static.c:111:1: note: in expansion of macro ‘module_init’
+  111 | module_init(led_cdev_static_init);
+      | ^~~~~~~~~~~
+/home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_cdev_static.c:25:19: note: ‘init_module’ target declared here
+   25 | static int __init led_cdev_static_init(void)
+      |                   ^~~~~~~~~~~~~~~~~~~~
+include/linux/init.h:356:14: warning: ‘cleanup_module’ specifies less restrictive attribute than its target ‘led_cdev_static_exit’: ‘cold’ [-Wmissing-attributes]
+  356 |         void cleanup_module(void) __attribute__((alias(#exitfn)));
+      |              ^~~~~~~~~~~~~~
+/home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_cdev_static.c:112:1: note: in expansion of macro ‘module_exit’
+  112 | module_exit(led_cdev_static_exit);
+      | ^~~~~~~~~~~
+/home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_cdev_static.c:100:20: note: ‘cleanup_module’ target declared here
+  100 | static void __exit led_cdev_static_exit(void)
+      |                    ^~~~~~~~~~~~~~~~~~~~
+  arm-linux-gnueabihf-gcc -Wp,-MD,/home/gs/code/i.MX6UL/drivers/10-led-chrdev/.led_cdev_dynamic.o.d -nostdinc -isystem /usr/lib/gcc-cross/arm-linux-gnueabihf/13/include -I./arch/arm/include -Iarch/arm/include/generated/uapi -Iarch/arm/include/generated  -Iinclude -I./arch/arm/include/uapi -Iarch/arm/include/generated/uapi -I./include/uapi -Iinclude/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-dwarf2-cfi-asm -fno-ipa-sra -mabi=aapcs-linux -mno-thumb-interwork -mfpu=vfp -funwind-tables -marm -D__LINUX_ARM_ARCH__=7 -march=armv5t -Wa,-march=armv7-a -msoft-float -Uarm -fno-delete-null-pointer-checks -O2 -Wframe-larger-than=1024 -fno-stack-protector -Wno-unused-but-set-variable -fomit-frame-pointer -fno-var-tracking-assignments -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -march=armv7-a  -DMODULE  -D"KBUILD_STR(s)=#s" -D"KBUILD_BASENAME=KBUILD_STR(led_cdev_dynamic)"  -D"KBUILD_MODNAME=KBUILD_STR(led_cdev_dynamic)" -c -o /home/gs/code/i.MX6UL/drivers/10-led-chrdev/.tmp_led_cdev_dynamic.o /home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_cdev_dynamic.c
+In file included from include/linux/kernel.h:11,
+                 from include/linux/list.h:8,
+                 from include/linux/kobject.h:20,
+                 from include/linux/cdev.h:4,
+                 from /home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_cdev_dynamic.c:3:
+include/linux/log2.h:22:1: warning: ignoring attribute ‘noreturn’ because it conflicts with attribute ‘const’ [-Wattributes]
+   22 | int ____ilog2_NaN(void);
+      | ^~~
+In file included from include/linux/printk.h:5,
+                 from include/linux/kernel.h:13:
+include/linux/init.h:350:13: warning: ‘init_module’ specifies less restrictive attribute than its target ‘led_cdev_dynamic_init’: ‘cold’ [-Wmissing-attributes]
+  350 |         int init_module(void) __attribute__((alias(#initfn)));
+      |             ^~~~~~~~~~~
+/home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_cdev_dynamic.c:108:1: note: in expansion of macro ‘module_init’
+  108 | module_init(led_cdev_dynamic_init);
+      | ^~~~~~~~~~~
+/home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_cdev_dynamic.c:24:19: note: ‘init_module’ target declared here
+   24 | static int __init led_cdev_dynamic_init(void)
+      |                   ^~~~~~~~~~~~~~~~~~~~~
+include/linux/init.h:356:14: warning: ‘cleanup_module’ specifies less restrictive attribute than its target ‘led_cdev_dynamic_exit’: ‘cold’ [-Wmissing-attributes]
+  356 |         void cleanup_module(void) __attribute__((alias(#exitfn)));
+      |              ^~~~~~~~~~~~~~
+/home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_cdev_dynamic.c:109:1: note: in expansion of macro ‘module_exit’
+  109 | module_exit(led_cdev_dynamic_exit);
+      | ^~~~~~~~~~~
+/home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_cdev_dynamic.c:97:20: note: ‘cleanup_module’ target declared here
+   97 | static void __exit led_cdev_dynamic_exit(void)
+      |                    ^~~~~~~~~~~~~~~~~~~~~
+  arm-linux-gnueabihf-gcc -Wp,-MD,/home/gs/code/i.MX6UL/drivers/10-led-chrdev/.led_misc.o.d -nostdinc -isystem /usr/lib/gcc-cross/arm-linux-gnueabihf/13/include -I./arch/arm/include -Iarch/arm/include/generated/uapi -Iarch/arm/include/generated  -Iinclude -I./arch/arm/include/uapi -Iarch/arm/include/generated/uapi -I./include/uapi -Iinclude/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-dwarf2-cfi-asm -fno-ipa-sra -mabi=aapcs-linux -mno-thumb-interwork -mfpu=vfp -funwind-tables -marm -D__LINUX_ARM_ARCH__=7 -march=armv5t -Wa,-march=armv7-a -msoft-float -Uarm -fno-delete-null-pointer-checks -O2 -Wframe-larger-than=1024 -fno-stack-protector -Wno-unused-but-set-variable -fomit-frame-pointer -fno-var-tracking-assignments -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -march=armv7-a  -DMODULE  -D"KBUILD_STR(s)=#s" -D"KBUILD_BASENAME=KBUILD_STR(led_misc)"  -D"KBUILD_MODNAME=KBUILD_STR(led_misc)" -c -o /home/gs/code/i.MX6UL/drivers/10-led-chrdev/.tmp_led_misc.o /home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_misc.c
+In file included from include/linux/kernel.h:11,
+                 from include/linux/list.h:8,
+                 from include/linux/miscdevice.h:4,
+                 from /home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_misc.c:4:
+include/linux/log2.h:22:1: warning: ignoring attribute ‘noreturn’ because it conflicts with attribute ‘const’ [-Wattributes]
+   22 | int ____ilog2_NaN(void);
+      | ^~~
+In file included from /home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_misc.c:3:
+include/linux/init.h:350:13: warning: ‘init_module’ specifies less restrictive attribute than its target ‘led_misc_init’: ‘cold’ [-Wmissing-attributes]
+  350 |         int init_module(void) __attribute__((alias(#initfn)));
+      |             ^~~~~~~~~~~
+/home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_misc.c:52:1: note: in expansion of macro ‘module_init’
+   52 | module_init(led_misc_init);
+      | ^~~~~~~~~~~
+/home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_misc.c:19:19: note: ‘init_module’ target declared here
+   19 | static int __init led_misc_init(void)
+      |                   ^~~~~~~~~~~~~
+include/linux/init.h:356:14: warning: ‘cleanup_module’ specifies less restrictive attribute than its target ‘led_misc_exit’: ‘cold’ [-Wmissing-attributes]
+  356 |         void cleanup_module(void) __attribute__((alias(#exitfn)));
+      |              ^~~~~~~~~~~~~~
+/home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_misc.c:53:1: note: in expansion of macro ‘module_exit’
+   53 | module_exit(led_misc_exit);
+      | ^~~~~~~~~~~
+/home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_misc.c:44:20: note: ‘cleanup_module’ target declared here
+   44 | static void __exit led_misc_exit(void)
+      |                    ^~~~~~~~~~~~~
+(cat /dev/null;   echo kernel//home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_register_chrdev.ko;   echo kernel//home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_cdev_static.ko;   echo kernel//home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_cdev_dynamic.ko;   echo kernel//home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_misc.ko;) > /home/gs/code/i.MX6UL/drivers/10-led-chrdev/modules.order
+make -f ./scripts/Makefile.modpost
+  find /home/gs/code/i.MX6UL/drivers/10-led-chrdev/.tmp_versions -name '*.mod' | xargs -r grep -h '\.ko$' | sort -u | sed 's/\.ko$/.o/' | scripts/mod/modpost -m -a -i ./Module.symvers -I /home/gs/code/i.MX6UL/drivers/10-led-chrdev/Module.symvers  -o /home/gs/code/i.MX6UL/drivers/10-led-chrdev/Module.symvers -S -w  -s -T -
+  arm-linux-gnueabihf-gcc -Wp,-MD,/home/gs/code/i.MX6UL/drivers/10-led-chrdev/.led_cdev_dynamic.mod.o.d -nostdinc -isystem /usr/lib/gcc-cross/arm-linux-gnueabihf/13/include -I./arch/arm/include -Iarch/arm/include/generated/uapi -Iarch/arm/include/generated  -Iinclude -I./arch/arm/include/uapi -Iarch/arm/include/generated/uapi -I./include/uapi -Iinclude/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-dwarf2-cfi-asm -fno-ipa-sra -mabi=aapcs-linux -mno-thumb-interwork -mfpu=vfp -funwind-tables -marm -D__LINUX_ARM_ARCH__=7 -march=armv5t -Wa,-march=armv7-a -msoft-float -Uarm -fno-delete-null-pointer-checks -O2 -Wframe-larger-than=1024 -fno-stack-protector -Wno-unused-but-set-variable -fomit-frame-pointer -fno-var-tracking-assignments -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -march=armv7-a  -D"KBUILD_STR(s)=#s" -D"KBUILD_BASENAME=KBUILD_STR(led_cdev_dynamic.mod)"  -D"KBUILD_MODNAME=KBUILD_STR(led_cdev_dynamic)" -DMODULE  -c -o /home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_cdev_dynamic.mod.o /home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_cdev_dynamic.mod.c
+In file included from include/linux/kernel.h:11,
+                 from include/linux/list.h:8,
+                 from include/linux/module.h:9,
+                 from /home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_cdev_dynamic.mod.c:1:
+include/linux/log2.h:22:1: warning: ignoring attribute ‘noreturn’ because it conflicts with attribute ‘const’ [-Wattributes]
+   22 | int ____ilog2_NaN(void);
+      | ^~~
+  arm-linux-gnueabihf-ld -EL -r  -T ./scripts/module-common.lds --build-id  -o /home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_cdev_dynamic.ko /home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_cdev_dynamic.o /home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_cdev_dynamic.mod.o
+  arm-linux-gnueabihf-gcc -Wp,-MD,/home/gs/code/i.MX6UL/drivers/10-led-chrdev/.led_cdev_static.mod.o.d -nostdinc -isystem /usr/lib/gcc-cross/arm-linux-gnueabihf/13/include -I./arch/arm/include -Iarch/arm/include/generated/uapi -Iarch/arm/include/generated  -Iinclude -I./arch/arm/include/uapi -Iarch/arm/include/generated/uapi -I./include/uapi -Iinclude/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-dwarf2-cfi-asm -fno-ipa-sra -mabi=aapcs-linux -mno-thumb-interwork -mfpu=vfp -funwind-tables -marm -D__LINUX_ARM_ARCH__=7 -march=armv5t -Wa,-march=armv7-a -msoft-float -Uarm -fno-delete-null-pointer-checks -O2 -Wframe-larger-than=1024 -fno-stack-protector -Wno-unused-but-set-variable -fomit-frame-pointer -fno-var-tracking-assignments -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -march=armv7-a  -D"KBUILD_STR(s)=#s" -D"KBUILD_BASENAME=KBUILD_STR(led_cdev_static.mod)"  -D"KBUILD_MODNAME=KBUILD_STR(led_cdev_static)" -DMODULE  -c -o /home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_cdev_static.mod.o /home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_cdev_static.mod.c
+In file included from include/linux/kernel.h:11,
+                 from include/linux/list.h:8,
+                 from include/linux/module.h:9,
+                 from /home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_cdev_static.mod.c:1:
+include/linux/log2.h:22:1: warning: ignoring attribute ‘noreturn’ because it conflicts with attribute ‘const’ [-Wattributes]
+   22 | int ____ilog2_NaN(void);
+      | ^~~
+  arm-linux-gnueabihf-ld -EL -r  -T ./scripts/module-common.lds --build-id  -o /home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_cdev_static.ko /home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_cdev_static.o /home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_cdev_static.mod.o
+  arm-linux-gnueabihf-gcc -Wp,-MD,/home/gs/code/i.MX6UL/drivers/10-led-chrdev/.led_misc.mod.o.d -nostdinc -isystem /usr/lib/gcc-cross/arm-linux-gnueabihf/13/include -I./arch/arm/include -Iarch/arm/include/generated/uapi -Iarch/arm/include/generated  -Iinclude -I./arch/arm/include/uapi -Iarch/arm/include/generated/uapi -I./include/uapi -Iinclude/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-dwarf2-cfi-asm -fno-ipa-sra -mabi=aapcs-linux -mno-thumb-interwork -mfpu=vfp -funwind-tables -marm -D__LINUX_ARM_ARCH__=7 -march=armv5t -Wa,-march=armv7-a -msoft-float -Uarm -fno-delete-null-pointer-checks -O2 -Wframe-larger-than=1024 -fno-stack-protector -Wno-unused-but-set-variable -fomit-frame-pointer -fno-var-tracking-assignments -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -march=armv7-a  -D"KBUILD_STR(s)=#s" -D"KBUILD_BASENAME=KBUILD_STR(led_misc.mod)"  -D"KBUILD_MODNAME=KBUILD_STR(led_misc)" -DMODULE  -c -o /home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_misc.mod.o /home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_misc.mod.c
+In file included from include/linux/kernel.h:11,
+                 from include/linux/list.h:8,
+                 from include/linux/module.h:9,
+                 from /home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_misc.mod.c:1:
+include/linux/log2.h:22:1: warning: ignoring attribute ‘noreturn’ because it conflicts with attribute ‘const’ [-Wattributes]
+   22 | int ____ilog2_NaN(void);
+      | ^~~
+  arm-linux-gnueabihf-ld -EL -r  -T ./scripts/module-common.lds --build-id  -o /home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_misc.ko /home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_misc.o /home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_misc.mod.o
+  arm-linux-gnueabihf-gcc -Wp,-MD,/home/gs/code/i.MX6UL/drivers/10-led-chrdev/.led_register_chrdev.mod.o.d -nostdinc -isystem /usr/lib/gcc-cross/arm-linux-gnueabihf/13/include -I./arch/arm/include -Iarch/arm/include/generated/uapi -Iarch/arm/include/generated  -Iinclude -I./arch/arm/include/uapi -Iarch/arm/include/generated/uapi -I./include/uapi -Iinclude/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-dwarf2-cfi-asm -fno-ipa-sra -mabi=aapcs-linux -mno-thumb-interwork -mfpu=vfp -funwind-tables -marm -D__LINUX_ARM_ARCH__=7 -march=armv5t -Wa,-march=armv7-a -msoft-float -Uarm -fno-delete-null-pointer-checks -O2 -Wframe-larger-than=1024 -fno-stack-protector -Wno-unused-but-set-variable -fomit-frame-pointer -fno-var-tracking-assignments -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -march=armv7-a  -D"KBUILD_STR(s)=#s" -D"KBUILD_BASENAME=KBUILD_STR(led_register_chrdev.mod)"  -D"KBUILD_MODNAME=KBUILD_STR(led_register_chrdev)" -DMODULE  -c -o /home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_register_chrdev.mod.o /home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_register_chrdev.mod.c
+In file included from include/linux/kernel.h:11,
+                 from include/linux/list.h:8,
+                 from include/linux/module.h:9,
+                 from /home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_register_chrdev.mod.c:1:
+include/linux/log2.h:22:1: warning: ignoring attribute ‘noreturn’ because it conflicts with attribute ‘const’ [-Wattributes]
+   22 | int ____ilog2_NaN(void);
+      | ^~~
+  arm-linux-gnueabihf-ld -EL -r  -T ./scripts/module-common.lds --build-id  -o /home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_register_chrdev.ko /home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_register_chrdev.o /home/gs/code/i.MX6UL/drivers/10-led-chrdev/led_register_chrdev.mod.o
+make[1]: Leaving directory '/home/gs/code/i.MX6UL/kernel'
