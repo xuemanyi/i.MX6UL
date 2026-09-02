@@ -68,4 +68,5 @@ make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- menuconfig
 
 # Build the entire kernel
 # -j8 enables parallel build with 8 jobs to speed up compilation
+# bear -- make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- all -j8
 make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- all -j8
