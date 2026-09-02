@@ -104,18 +104,12 @@
 		};
 	};
 
-	leds {
-		compatible = "gpio-leds";
+	beep {
+		compatible = "atkalpha-beep";
 		pinctrl-names = "default";
 		pinctrl-0 = <&pinctrl_beep>;
-
-		/* GPIO1_IO03 由 gpioled 节点独占。 */
-
-		beep{
-			label = "beep";
-			gpios = <&gpio5 1 GPIO_ACTIVE_LOW>;
-			default-state = "off";
-		};
+		beep-gpio = <&gpio5 1 GPIO_ACTIVE_LOW>;
+		status = "okay";
 	};
 
 	gpio_keys: gpio_keys@0 {
@@ -867,9 +861,9 @@
 			>;
 		};
 
-		pinctrl_beep: beep {
+		pinctrl_beep: beepgrp {
 			fsl,pins = <
-				MX6ULL_PAD_SNVS_TAMPER1__GPIO5_IO01	0x17059
+				MX6ULL_PAD_SNVS_TAMPER1__GPIO5_IO01	0x10b0 /* beep */
 			>;
 		};
         };
