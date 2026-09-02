@@ -208,6 +208,18 @@
                 #reset-cells = <0>;
                 status = "disabled";
         };
+
+	alphaled {
+		#address-cells = <1>;
+		#size-cells = <1>;
+		compatible = "atkalpha-led";
+		status = "okay";
+		reg = <0x020c406c 0x04 /* CCM_CCGR1_BASE */
+		       0x020e0068 0x04 /* SW_MUX_GPIO1_IO03_BASE */
+		       0x020e02f4 0x04 /* SW_PAD_GPIO1_IO03_BASE */
+		       0x0209c000 0x04 /* GPIO1_DR_BASE */
+		       0x0209c004 0x04>; /* GPIO1_GDIR_BASE */
+	};
 };
 
 &cpu0 {
