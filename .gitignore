@@ -39,6 +39,9 @@
 *.x86_64
 *.hex
 
+# Driver test executables
+/drivers/*/app/*_test
+
 # Debug files
 *.dSYM/
 *.su
