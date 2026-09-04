@@ -19,5 +19,5 @@ module_init(multi_file_init);
 module_exit(multi_file_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("sucre");
+MODULE_AUTHOR("Snowclad");
 MODULE_DESCRIPTION("Multi-file external kernel module example");

@@ -52,6 +52,6 @@ static void __exit led_misc_exit(void)
 module_init(led_misc_init);
 module_exit(led_misc_exit);
 
-MODULE_AUTHOR("sucre");
+MODULE_AUTHOR("Snowclad");
 MODULE_DESCRIPTION("LED driver using miscdevice");
 MODULE_LICENSE("GPL");

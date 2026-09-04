@@ -120,5 +120,5 @@ module_init(traditional_init);
 module_exit(traditional_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("sucre");
+MODULE_AUTHOR("Snowclad");
 MODULE_DESCRIPTION("Traditional register_chrdev example");

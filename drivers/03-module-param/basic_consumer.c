@@ -84,6 +84,6 @@ module_init(basic_consumer_init);
 module_exit(basic_consumer_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("sucre");
+MODULE_AUTHOR("Snowclad");
 MODULE_DESCRIPTION("Basic exported-symbol consumer module");
 MODULE_VERSION("1.0");

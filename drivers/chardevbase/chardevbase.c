@@ -17,5 +17,5 @@ module_init(chardevbase_init);
 module_exit(chardevbase_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("sucre");
+MODULE_AUTHOR("Snowclad");
 MODULE_DESCRIPTION("Minimal external kernel module example");

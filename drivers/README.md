@@ -147,7 +147,7 @@ module_init(my_driver_init);
 module_exit(my_driver_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("Your Name");
+MODULE_AUTHOR("Snowclad");
 MODULE_DESCRIPTION("i.MX6UL example driver");
 ```
 

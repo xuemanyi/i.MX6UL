@@ -163,5 +163,5 @@ module_init(dynamic_cdev_init);
 module_exit(dynamic_cdev_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("sucre");
+MODULE_AUTHOR("Snowclad");
 MODULE_DESCRIPTION("Dynamic device number and cdev example");

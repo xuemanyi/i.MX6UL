@@ -317,5 +317,5 @@ module_init(timer_module_init);
 module_exit(timer_module_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("Codex");
+MODULE_AUTHOR("Snowclad");
 MODULE_DESCRIPTION("GPIO LED kernel timer driver");

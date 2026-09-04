@@ -209,6 +209,6 @@ module_init(deep_consumer_init);
 module_exit(deep_consumer_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("sucre");
+MODULE_AUTHOR("Snowclad");
 MODULE_DESCRIPTION("Consumer of versioned service API");
 MODULE_VERSION("1.0");

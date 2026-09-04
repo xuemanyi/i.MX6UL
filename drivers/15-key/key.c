@@ -283,6 +283,6 @@ static void __exit key_module_exit(void)
 module_init(key_module_init);
 module_exit(key_module_exit);
 
-MODULE_AUTHOR("ALIENTEK");
+MODULE_AUTHOR("Snowclad");
 MODULE_DESCRIPTION("Device-tree GPIO key character driver");
 MODULE_LICENSE("GPL");

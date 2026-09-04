@@ -466,6 +466,6 @@ static void __exit concurrency_led_exit(void)
 module_init(concurrency_led_init);
 module_exit(concurrency_led_exit);
 
-MODULE_AUTHOR("OpenAI");
+MODULE_AUTHOR("Snowclad");
 MODULE_DESCRIPTION("Atomic, spinlock, semaphore and mutex exclusive-open lab");
 MODULE_LICENSE("GPL");

@@ -45,6 +45,6 @@ static void __exit led_register_chrdev_exit(void)
 module_init(led_register_chrdev_init);
 module_exit(led_register_chrdev_exit);
 
-MODULE_AUTHOR("sucre");
+MODULE_AUTHOR("Snowclad");
 MODULE_DESCRIPTION("LED driver using register_chrdev");
 MODULE_LICENSE("GPL");

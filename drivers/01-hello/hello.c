@@ -24,6 +24,6 @@ module_init(hello_init);
 module_exit(hello_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("sucre");
+MODULE_AUTHOR("Snowclad");
 MODULE_DESCRIPTION("A simple Hello World kernel module");
 MODULE_VERSION("1.0");

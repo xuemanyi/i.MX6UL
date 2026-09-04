@@ -237,6 +237,6 @@ module_init(deep_provider_init);
 module_exit(deep_provider_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("sucre");
+MODULE_AUTHOR("Snowclad");
 MODULE_DESCRIPTION("Versioned service API provider module");
 MODULE_VERSION("1.0");

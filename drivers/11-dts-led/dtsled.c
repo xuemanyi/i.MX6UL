@@ -364,6 +364,6 @@ static void __exit dtsled_exit(void)
 module_init(dtsled_init);
 module_exit(dtsled_exit);
 
-MODULE_AUTHOR("ALIENTEK");
+MODULE_AUTHOR("Snowclad");
 MODULE_DESCRIPTION("Device-tree-based GPIO1_IO03 LED character driver");
 MODULE_LICENSE("GPL");

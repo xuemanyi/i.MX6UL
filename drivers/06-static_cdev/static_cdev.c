@@ -148,5 +148,5 @@ module_init(static_cdev_init);
 module_exit(static_cdev_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("sucre");
+MODULE_AUTHOR("Snowclad");
 MODULE_DESCRIPTION("Static device number and cdev example");

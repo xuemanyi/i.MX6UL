@@ -108,6 +108,6 @@ static void __exit led_cdev_dynamic_exit(void)
 module_init(led_cdev_dynamic_init);
 module_exit(led_cdev_dynamic_exit);
 
-MODULE_AUTHOR("sucre");
+MODULE_AUTHOR("Snowclad");
 MODULE_DESCRIPTION("LED driver using dynamic device number and cdev");
 MODULE_LICENSE("GPL");

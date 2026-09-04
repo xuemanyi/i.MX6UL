@@ -303,6 +303,6 @@ static void __exit beep_exit(void)
 module_init(beep_init);
 module_exit(beep_exit);
 
-MODULE_AUTHOR("ALIENTEK");
+MODULE_AUTHOR("Snowclad");
 MODULE_DESCRIPTION("Device-tree-based GPIO active buzzer character driver");
 MODULE_LICENSE("GPL");

@@ -39,6 +39,6 @@ module_init(hello_param_init);
 module_exit(hello_param_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("sucre");
+MODULE_AUTHOR("Snowclad");
 MODULE_DESCRIPTION("Hello World kernel module with parameters");
 MODULE_VERSION("1.0");

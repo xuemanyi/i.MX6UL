@@ -333,6 +333,6 @@ static void __exit led_exit(void)
 module_init(led_init);
 module_exit(led_exit);
 
-MODULE_AUTHOR("sucre");
+MODULE_AUTHOR("Snowclad");
 MODULE_DESCRIPTION("i.MX6U/i.MX6ULL GPIO1_IO03 LED driver");
 MODULE_LICENSE("GPL");

@@ -304,6 +304,6 @@ static void __exit gpioled_exit(void)
 module_init(gpioled_init);
 module_exit(gpioled_exit);
 
-MODULE_AUTHOR("ALIENTEK");
+MODULE_AUTHOR("Snowclad");
 MODULE_DESCRIPTION("Device-tree-based GPIO LED character driver");
 MODULE_LICENSE("GPL");

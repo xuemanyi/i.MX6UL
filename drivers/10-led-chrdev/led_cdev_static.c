@@ -111,6 +111,6 @@ static void __exit led_cdev_static_exit(void)
 module_init(led_cdev_static_init);
 module_exit(led_cdev_static_exit);
 
-MODULE_AUTHOR("sucre");
+MODULE_AUTHOR("Snowclad");
 MODULE_DESCRIPTION("LED driver using static device number and cdev");
 MODULE_LICENSE("GPL");
