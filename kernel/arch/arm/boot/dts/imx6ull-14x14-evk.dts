@@ -112,20 +112,16 @@
 		status = "okay";
 	};
 
-	gpio_keys: gpio_keys@0 {
-		compatible = "gpio-keys";
-		pinctrl-names = "default";
-		pinctrl-0 = <&pinctrl_gpio_keys>;
+	key {
 		#address-cells = <1>;
-		#size-cells = <0>;
-		autorepeat;
-
-		key1@1 {
-			label = "USER-KEY1";
-			linux,code = <114>;
-			gpios = <&gpio1 18 GPIO_ACTIVE_LOW>;
-			gpio-key,wakeup;
-		};
+		#size-cells = <1>;
+		compatible = "atkalpha-key";
+		pinctrl-names = "default";
+		pinctrl-0 = <&pinctrl_key>;
+		key-gpio = <&gpio1 18 GPIO_ACTIVE_LOW>; /* KEY0 */
+		interrupt-parent = <&gpio1>;
+		interrupts = <18 IRQ_TYPE_EDGE_BOTH>;
+		status = "okay";
 	};
 
 	sound {
@@ -549,9 +545,9 @@
 			>;
 		};
 
-		pinctrl_gpio_keys: gpio-keys {
+		pinctrl_key: keygrp {
 			fsl,pins = <
-				MX6UL_PAD_UART1_CTS_B__GPIO1_IO18	0x80000000
+				MX6UL_PAD_UART1_CTS_B__GPIO1_IO18	0xf080 /* KEY0 */
 			>;
 		};
 
