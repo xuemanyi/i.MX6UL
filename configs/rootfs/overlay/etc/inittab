@@ -1,0 +1,5 @@
+# BusyBox init 配置；串口与启动时序可按板级需求继续调整。
+::sysinit:/etc/init.d/rcS
+ttyMXC0::respawn:/sbin/getty -L ttyMXC0 115200 vt100
+::ctrlaltdel:/sbin/reboot
+::shutdown:/bin/umount -a -r

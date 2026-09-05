@@ -65,3 +65,7 @@ compile_commands.json
 
 # dir
 **/.cache/
+
+# Unified build framework generated directories
+/logs/
+/output/
