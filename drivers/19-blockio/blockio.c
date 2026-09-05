@@ -318,7 +318,7 @@ static int __init blockio_module_init(void)
 	if (ret) {
 		pr_err("%s: failed to request IRQ %d: %d\n", BLOCKIO_NAME,
 		       blockio.key.irq, ret);
-		goto err_dispose_irq;
+		goto err_free_gpio;
 	}
 
 	ret = alloc_chrdev_region(&blockio.devid, 0, BLOCKIO_COUNT,
@@ -367,8 +367,6 @@ err_free_irq:
 	 */
 	free_irq(blockio.key.irq, &blockio);
 	del_timer_sync(&blockio.timer);
-err_dispose_irq:
-	irq_dispose_mapping(blockio.key.irq);
 err_free_gpio:
 	gpio_free(blockio.key.gpio);
 err_put_node:
@@ -395,7 +393,7 @@ static void __exit blockio_module_exit(void)
 	 */
 	free_irq(blockio.key.irq, &blockio);
 	del_timer_sync(&blockio.timer);
-	irq_dispose_mapping(blockio.key.irq);
+	/* GPIO 控制器拥有 legacy IRQ mapping，consumer 不负责销毁映射。 */
 	gpio_free(blockio.key.gpio);
 	of_node_put(blockio.node);
 	pr_info("%s: unregistered\n", BLOCKIO_NAME);
