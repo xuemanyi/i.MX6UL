@@ -88,3 +88,20 @@ BUSYBOX_BUILD_MODE="auto"
 - 直接执行 `mrproper` 会删除 `.config` 和生成文件，必须先保存已验证配置。
 - 修改 `nobody:nogroup` 文件所有者会改变工作区元数据，需由工程维护者明确授权。
 - BusyBox 的 `oldconfig` 在配置版本不匹配时可能提出交互式选项；应先审查并固定配置快照。
+
+## 7. 模块脚本入口
+
+当前框架将具体构建逻辑放回对应模块目录，每个模块均可独立执行：
+
+```text
+bootloader/build.sh   U-Boot
+kernel/build.sh       Linux Kernel
+busybox/build.sh      BusyBox
+drivers/build.sh      外部内核模块
+platform/build.sh     用户态程序
+rootfs/build.sh       RootFS 组装与发布
+```
+
+`tools/build.sh` 不再显示交互菜单，只负责调用 `rootfs/build.sh` 完成整体构建。platform
+和 drivers 分别在各自的总入口中维护组件登记列表；platform 的每个应用目录必须提供
+Makefile，由 `platform/build.sh` 使用 `make -C` 调用。

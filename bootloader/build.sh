@@ -1,47 +1,33 @@
-#判断交叉编译工具链是否存在，使用arm-poky-linux-gnueabi- (gcc-5.3.0)
-if [ ! -e "/opt/fsl-imx-x11/4.1.15-2.1.0/environment-setup-cortexa7hf-neon-poky-linux-gnueabi" ]; then
-    echo ""
-    echo "请先安装正点原子I.MX6U开发板光盘A-基础资料->5、开发工具->1、交叉编译器 
-->fsl-imx-x11-glibc-x86_64-meta-toolchain-qt5-cortexa7hf-neon-toolchain-4.1.15-2.1.0.sh"
-    echo ""
-exit 1
-fi
+#!/usr/bin/env bash
+# U-Boot 模块构建入口，默认使用 configs/mytest_defconfig。
+set -Eeuo pipefail
+IFS=$'\n\t'
+UBOOT_SRC="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
+PROJECT_ROOT="$(cd -- "${UBOOT_SRC}/.." && pwd -P)"
+# shellcheck disable=SC1091
+source "${PROJECT_ROOT}/tools/envsetup.sh"
+# shellcheck disable=SC1091
+source "${PROJECT_ROOT}/tools/scripts/common.sh"
 
-#使用Yocto SDK里的GCC 5.3.0交叉编译器编译出厂Linux源码,可不用指定ARCH等，直接执行Make
-source /opt/fsl-imx-x11/4.1.15-2.1.0/environment-setup-cortexa7hf-neon-poky-linux-gnueabi
-#!/bin/bash
-#编译前先清除
-make distclean
-make mx6ull_14x14_ddr256_nand_sd_defconfig
-make all -j16
-mv u-boot.imx u-boot-imx6ull-14x14-ddr256-nand-sd.imx
-mv u-boot.bin u-boot-imx6ull-14x14-ddr256-nand-sd.bin
-make mx6ull_14x14_ddr512_nand_sd_defconfig
-make all -j16
-mv u-boot.imx u-boot-imx6ull-14x14-ddr512-nand-sd.imx
-mv u-boot.bin u-boot-imx6ull-14x14-ddr512-nand-sd.bin
-make mx6ull_14x14_ddr256_emmc_defconfig
-make all -j16
-mv u-boot.imx u-boot-imx6ull-14x14-ddr256-emmc.imx
-mv u-boot.bin u-boot-imx6ull-14x14-ddr256-emmc.bin
-make mx6ull_14x14_ddr512_emmc_defconfig
-make all -j16
-mv u-boot.imx u-boot-imx6ull-14x14-ddr512-emmc.imx
-mv u-boot.bin u-boot-imx6ull-14x14-ddr512-emmc.bin
-make mx6ull_14x14_ddr256_nand_defconfig
-make all -j16
-mv u-boot.imx u-boot-imx6ull-14x14-ddr256-nand.imx
-mv u-boot.bin u-boot-imx6ull-14x14-ddr256-nand.bin
-make mx6ull_14x14_ddr512_nand_defconfig
-make all -j16
-mv u-boot.imx u-boot-imx6ull-14x14-ddr512-nand.imx
-mv u-boot.bin u-boot-imx6ull-14x14-ddr512-nand.bin
-#在当前目录下新建一个tmp目录，用于存放编译后的目标文件
-if [ ! -e "./tmp" ]; then
-    mkdir tmp
-fi
-rm -rf tmp/*
-#拷贝所有编译的U-boot.imx及U-boot.bin到当前的tmp目录下
-mv u-boot-imx6ull*.bin tmp
-mv u-boot-imx6ull*.imx tmp
-echo "编译完成，请查看当前目录下的tmp文件夹查看编译好的目标文件"
+configure() {
+	require_toolchain
+	require_file "${UBOOT_SRC}/configs/${UBOOT_DEFCONFIG}"
+	if [[ ! -f "${UBOOT_OUT}/.config" || "${RECONFIGURE:-0}" == "1" ]]; then
+		run_logged uboot-config uboot_make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}" "${UBOOT_DEFCONFIG}"
+	fi
+}
+
+build() {
+	configure
+	run_logged uboot uboot_make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}" -j"${JOBS}"
+	require_file "${UBOOT_OUT}/${UBOOT_IMAGE}"
+	mkdir -p -- "${OUTPUT_DIR}/boot"
+	cp -f -- "${UBOOT_OUT}/${UBOOT_IMAGE}" "${OUTPUT_DIR}/boot/${UBOOT_IMAGE}"
+}
+
+case "${1:-build}" in
+	build) build ;;
+	menuconfig) configure; uboot_make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}" menuconfig ;;
+	clean) [[ -f "${UBOOT_OUT}/Makefile" ]] && uboot_make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}" clean ;;
+	*) echo "Usage: $0 {build|menuconfig|clean}" >&2; exit 2 ;;
+esac

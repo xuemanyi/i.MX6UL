@@ -7,16 +7,10 @@
 
 ```text
 tools/
-├── build.sh                 顶层命令入口和交互式菜单
+├── build.sh                 完整系统构建入口
 ├── envsetup.sh              工程内交叉工具链环境初始化
 ├── scripts/
-│   ├── common.sh            路径、日志、错误处理和安全检查
-│   ├── build_uboot.sh       U-Boot 构建调度
-│   ├── build_kernel.sh      Kernel 和内核模块准备调度
-│   ├── build_drivers.sh     drivers/build.sh 调度
-│   ├── build_busybox.sh     BusyBox 构建与安装调度
-│   ├── build_platform.sh    platform/build.sh 调度
-│   └── build_rootfs.sh      RootFS 组装和发布物打包
+│   └── common.sh             模块脚本共享的路径、日志与安全函数
 └── toolchain/
     └── gcc-linaro-4.9.4-2017.01-x86_64_arm-linux-gnueabihf/
 ```
@@ -27,19 +21,14 @@ tools/
 flowchart TD
     ENTRY[tools/build.sh] --> ENV[tools/envsetup.sh]
     ENTRY --> COMMON[tools/scripts/common.sh]
-    ENTRY --> UBOOT[build_uboot.sh]
-    ENTRY --> KERNEL[build_kernel.sh]
-    ENTRY --> DRIVERS[build_drivers.sh]
-    ENTRY --> BUSYBOX[build_busybox.sh]
-    ENTRY --> PLATFORM[build_platform.sh]
-    ENTRY --> ROOTFS[build_rootfs.sh]
+    ENTRY --> ROOTFS[rootfs/build.sh]
 
     ENV --> TOOLCHAIN[tools/toolchain Linaro GCC 4.9.4]
-    UBOOT --> BOOTLOADER[bootloader/]
-    KERNEL --> KERNELSRC[kernel/]
-    DRIVERS --> DRIVERENTRY[drivers/build.sh]
-    PLATFORM --> PLATFORMENTRY[platform/build.sh]
-    BUSYBOX --> BUSYBOXSRC[busybox/]
+    ROOTFS --> UBOOT[bootloader/build.sh]
+    ROOTFS --> KERNEL[kernel/build.sh]
+    ROOTFS --> DRIVERS[drivers/build.sh]
+    ROOTFS --> BUSYBOX[busybox/build.sh]
+    ROOTFS --> PLATFORM[platform/build.sh]
 
     KERNEL --> ROOTFS
     DRIVERS --> ROOTFS
@@ -61,7 +50,7 @@ CC、CXX、AR、AS、LD、OBJCOPY、OBJDUMP、STRIP
 JOBS
 ```
 
-构建前会检查工具链目录与 `${CROSS_COMPILE}gcc`。所有平台程序和驱动调度脚本都会使用
+构建前会检查工具链目录与 `${CROSS_COMPILE}gcc`。所有模块脚本都会使用
 工程内工具链，避免调用者残留的其他架构交叉编译环境影响结果。
 
 ## 组件入口
@@ -69,20 +58,22 @@ JOBS
 从工程根目录执行：
 
 ```bash
-./tools/build.sh help
-./tools/build.sh uboot
-./tools/build.sh kernel
-./tools/build.sh busybox
-./tools/build.sh drivers
-./tools/build.sh driver 12-gpioled
-./tools/build.sh platform
-./tools/build.sh app 01-chrdev_test
-./tools/build.sh rootfs
-./tools/build.sh image
-./tools/build.sh all
+./tools/build.sh
 ```
 
-不带参数时，`./tools/build.sh` 提供纯 Bash 交互式菜单。
+不带参数时，`./tools/build.sh` 直接执行完整系统构建，不提供交互式菜单。具体组件必须在
+对应目录执行其 `build.sh`：
+
+```bash
+./bootloader/build.sh build
+./kernel/build.sh build
+./busybox/build.sh build
+./drivers/build.sh build
+./platform/build.sh build
+./rootfs/build.sh build
+```
+
+`tools/build.sh` 只负责完整构建的顺序调度，不承载任何组件的具体编译命令。
 
 ### platform
 
@@ -104,7 +95,7 @@ cd platform
 
 `drivers/build.sh` 是外部内核模块的唯一总入口。要选择统一构建或安装的驱动时，在
 `DRIVER_COMPONENTS` 中登记 `drivers/` 下的一级目录名。总入口使用已准备好的 Kernel
-构建目录调用 Kbuild，指定单个驱动也可通过顶层命令执行。
+构建目录调用 Kbuild，指定单个驱动在 drivers 目录执行。
 
 ```bash
 cd drivers
@@ -153,11 +144,12 @@ logs/<时间戳>/              各构建阶段日志
 ## 清理命令
 
 ```bash
-./tools/build.sh clean
-./tools/build.sh clean kernel
-./tools/build.sh clean platform
-./tools/build.sh distclean kernel
+./bootloader/build.sh clean
+./kernel/build.sh clean
+./busybox/build.sh clean
+./drivers/build.sh clean
+./platform/build.sh clean
+./rootfs/build.sh clean
 ```
 
-`clean` 删除组件中间文件；`distclean` 删除独立输出目录。两者都不会删除源码、工程配置
-或已发布的镜像目录。
+各模块的 `clean` 仅删除其自身构建中间文件；不会删除源码、工程配置或已发布镜像目录。
