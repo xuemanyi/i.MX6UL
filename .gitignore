@@ -69,3 +69,12 @@ compile_commands.json
 # Unified build framework generated directories
 /logs/
 /output/
+
+# BusyBox generated configuration and host/target build artifacts
+/busybox/.kernelrelease
+/busybox/applets/applet_tables
+/busybox/applets/usage
+/busybox/applets/usage_pod
+/busybox/busybox
+/busybox/busybox.links
+/busybox/busybox_unstripped
