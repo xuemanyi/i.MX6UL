@@ -11,6 +11,9 @@ source "${PROJECT_ROOT}/tools/scripts/common.sh"
 
 configure() {
 	require_toolchain
+	# 默认配置文件为 kernel/arch/arm/configs/imx_v7_defconfig，
+	# 其名称由 configs/imx6ul.env 的 KERNEL_DEFCONFIG 指定。
+	# 若构建输出目录已有 .config，则复用该配置；设置 RECONFIGURE=1 才重新加载 defconfig。
 	require_file "${KERNEL_SRC}/arch/arm/configs/${KERNEL_DEFCONFIG}"
 	if (( KERNEL_IN_SOURCE )) && [[ ! -w "${KERNEL_SRC}/include/config" ]]; then
 		die "Kernel source build directory is not writable: ${KERNEL_SRC}/include/config"
